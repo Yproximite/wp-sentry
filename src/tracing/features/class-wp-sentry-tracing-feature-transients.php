@@ -41,18 +41,21 @@ class WP_Sentry_Tracing_Feature_Transients extends WP_Sentry_Tracing_Feature {
 		if ( $this->str_starts_with( $hook_name, 'pre_set_transient_' ) || $this->str_starts_with( $hook_name, 'pre_set_site_transient_' ) ) {
 			// @TODO: This _shouldn't_ be necessary, but it is. Investigate.
 			$this->maybe_finish_current_span();
-
-			$this->record_transient_operation( 'put', func_get_args()[2] );
+			
+			$args = func_get_args()[2];
+			$this->record_transient_operation('put', $args);
 		} elseif ( $this->str_starts_with( $hook_name, 'pre_transient_' ) || $this->str_starts_with( $hook_name, 'pre_site_transient_' ) ) {
 			// @TODO: This _shouldn't_ be necessary, but it is. Investigate.
 			$this->maybe_finish_current_span();
 
-			$this->record_transient_operation( 'get', func_get_args()[2] );
+			$args = func_get_args()[2];
+			$this->record_transient_operation('get', $args);
 		} elseif ( $this->str_starts_with( $hook_name, 'delete_transient_' ) || $this->str_starts_with( $hook_name, 'delete_site_transient_' ) ) {
 			// @TODO: This _shouldn't_ be necessary, but it is. Investigate.
 			$this->maybe_finish_current_span();
 
-			$this->record_transient_operation( 'remove', func_get_args()[1] );
+			$args = func_get_args()[1];
+			$this->record_transient_operation('remove', $args);
 		} elseif ( $this->str_starts_with( $hook_name, 'transient_' ) || $this->str_starts_with( $hook_name, 'site_transient_' ) ) {
 			$span = $this->maybe_pop_span();
 
