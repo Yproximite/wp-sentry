@@ -1,5 +1,5 @@
 {
-  "name": "stayallive/wp-sentry",
+  "name": "yproximite/wp-sentry",
   "type": "wordpress-plugin",
   "license": "MIT",
   "description": "A (unofficial) WordPress plugin to report PHP and JavaScript errors to Sentry.",
